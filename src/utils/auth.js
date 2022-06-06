@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 
 const TokenKey = 'my-first-demo-token'
+const timeKey = 'my-first-demo-timestamp-key'
 
 export function getToken() {
   return Cookies.get(TokenKey)
@@ -12,4 +13,14 @@ export function setToken(token) {
 
 export function removeToken() {
   return Cookies.remove(TokenKey)
+}
+
+// 获取时间戳
+export function getTimeStamp() {
+  return Cookies.get(timeKey)
+}
+
+// 读取时间戳
+export function setTimeStamp() {
+  Cookies.set(timeKey, Date.now())
 }
