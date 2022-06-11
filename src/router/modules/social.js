@@ -1,18 +1,50 @@
-// 社保的路由规则
+
 import Layout from '@/layout'
+
 export default {
-  // 路由规则
-  path: '/social', // 路由地址
-  name: 'social', // 给模块的一级路由加一个name属性 之后会在做权限的时候用到
+  path: '/social_securitys',
   component: Layout,
-  children: [{
-    // 二级路由的path什么都不用写的时候 此时表示二级路由的默认路由
-    path: '', // 这里不用写
-    component: () => import('@/views/social'),
-    // 路由元信息 其实就是一个存储数据的地方 可以放任何内容
-    meta: {
-      title: '社保', // 这里为什么用title 因为左侧导航栏读取了这里的title属性
-      icon: 'table'
+  name: 'social_securitys',
+  children: [
+    {
+      path: '',
+      component: () => import('@/views/social'),
+      name: 'social_securitys',
+      meta: {
+        title: '社保',
+        icon: 'table'
+
+      }
+    },
+    // 报表
+    {
+      path: 'detail/:id',
+      hidden: true,
+      component: () => import('@/views/social/detail'),
+      name: 'socialDetail',
+      meta: {
+        title: '社保'
+      }
+    },
+    // 历史归档
+    {
+      path: 'historicalArchiving',
+      hidden: true,
+      component: () => import('@/views/social/historical'),
+      name: 'socialHistorical',
+      meta: {
+        title: '历史归档'
+      }
+    },
+    // 月报表
+    {
+      path: 'monthStatement',
+      component: () => import('@/views/social/month'),
+      name: 'socialMonthStatement',
+      hidden: true,
+      meta: {
+        title: '当月报表'
+      }
     }
-  }]
+  ]
 }

@@ -8,6 +8,7 @@ import attendancesRouter from './modules/attendances'
 import salarysRouter from './modules/salarys'
 import settingRouter from './modules/setting'
 import socialRouter from './modules/social'
+import userRouter from './modules/user'
 
 Vue.use(Router)
 
@@ -62,9 +63,19 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
+  {
+    path: '/import',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      component: () => import('@/views/import')
+    }]
+  },
+  userRouter
 
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+
 ]
 
 // 定义一个动态路由变量
@@ -80,8 +91,10 @@ export const asyncRoutes = [
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
+  base: 'hr/',
   scrollBehavior: () => ({ y: 0 }),
+  // routes: [...constantRoutes]
   routes: [...constantRoutes, ...asyncRoutes]
 })
 

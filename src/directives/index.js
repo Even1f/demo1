@@ -6,9 +6,13 @@ export const imagerror = {
     // options 指令当中变量的解释 其中有一个属性叫做value
     // dom认为此时就是图片
     // 当前图片有地址 当时地址没有加载成功的时候 会报错 会触发图片的一个机制 => onerror
+    dom.src = dom.src || options.value
     dom.onerror = function () {
       dom.src = options.value // 这里不能写死
     }
+  },
+  componentUpdated(dom, options) {
+    dom.src = dom.src || options.value
   }
 }
 
